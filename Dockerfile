@@ -1,10 +1,11 @@
 FROM lnls/epics-dist:base-3.15-synapps-lnls-R1-0-0-debian-9.5
 
+ENV GIT_USER_ORG henrique-silva
 ENV IOC_REPO rssmx100a-epics-ioc
 ENV BOOT_DIR iocrssmx100a
 ENV COMMIT ess-without-fm-cs
 
-RUN git clone https://github.com/lnls-dig/${IOC_REPO}.git /opt/epics/${IOC_REPO} && \
+RUN git clone https://github.com/${GIT_USER_ORG}/${IOC_REPO}.git /opt/epics/${IOC_REPO} && \
     cd /opt/epics/${IOC_REPO} && \
     git checkout ${COMMIT} && \
     sed -i -e 's|^EPICS_BASE=.*$|EPICS_BASE=/opt/epics/base|' configure/RELEASE && \
